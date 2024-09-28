@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/09/28/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>弄博客似乎有点难</title>
+    <url>/2024/09/28/%E5%BC%84%E5%8D%9A%E5%AE%A2%E7%9C%9F%E9%9A%BE%E5%95%8A/</url>
+    <content><![CDATA[<p>整了一天多的时间……但是没啥变化的。</p>
+<p>不过感觉说白了，博客真的就是写给自己看的。别人很少会看吧，不过这样也不错，自己写自己的自己看。</p>
+<p>试试效果咋样先。OK，成功了，我是真的头昏了都，搞了这么久，终于成功了hhhhhhh。我也可以发博客了捏。感觉我不会写多少。但是希望能多写点吧，好看一点。</p>
+<p>呃呃呃，至少这个比单纯写markdown好看一点吧。之前刷题，搜题解看到有的大佬的github博客真的很好看很好看，题解也写得很好。以后再慢慢研究下吧。</p>
+<p>准备以后更新一些题解和想法，希望可以成为算法竞赛高手和前端高手（ ）。现在感觉根本不会设置这个博客，看文档都要看不懂了，我怎么这么唐（ ）。慢慢学习吧，现在起码弄得差不多了，以后慢慢改就是了。从昨天下午到现在，除了昨天晚上打CF和睡觉，基本一直在整这个b博客（ ），但是现在也就这样，其实就是初始的样子吧。</p>
+<p>感觉可能是我的加速器不太行，然后也不会设代理和镜像啥的，不过总算也是弄好了，但是现在对于这个一点也不懂，让我很难受。</p>
+<p><img src="/24Sep8_1.png" alt="嘻嘻"></p>
+<p>唉唉，还得研究下markdown嘛可能，先差不多这样就行了吧。真的可以坚持写博客嘛（ ）。可以的，我感觉我现在只是因为觉得新鲜吧。差不多这样了，先去泡碗面吃，然后刷一下题。一天没写了，起码得把昨天的E题补了，昨天的D比E难来着。</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>title</title>
-    <url>/2024/09/28/title/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>分类1</category>
-        <category>分类2</category>
-      </categories>
-      <tags>
-        <tag>标签1</tag>
-        <tag>标签2</tag>
-      </tags>
   </entry>
 </search>
