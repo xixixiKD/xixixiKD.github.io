@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Codeforces Round 976 (Div. 2)</title>
+    <url>/2024/10/01/CF2020/</url>
+    <content><![CDATA[<p>很幸运的没有掉分，还上了八分，这把打得真唐爆了，看了大佬的 D 题的题解，真的妙啊。C题看了官方题解，越发觉得我自己写得史了。B题听群友讨论了，然后也明白了。。。幸好我打表了hhhhhhh。这场表现确实差吧，后面加油。</p>
+<p><img src="/../../img/2024_1001_00_39_21.png" alt="嘻嘻"></p>
+<p>因为发博客，截图得方便找到，于是又下载了截图插件，真挺爽的哈，这下很容易找到截图，而且截完之后可以直接贴到文件夹。系统自带的那个截图，只能贴到qq剪切板，不能贴到文件夹。命名规则和文件夹也能改，挺爽的，就是截图音效还没关，下次改下设置。名字叫share X，感觉真挺不错的。</p>
+<h4 id="Problem-A"><a href="#Problem-A" class="headerlink" title="Problem A"></a>Problem A</h4><p>给你 n 和 k ，每次可以将 n - pow( k , x) ，x&gt;&#x3D;0 ，问最少多少次可以让 n 变成0 。确确实实很签到，但我确实 T 了两次，另外一次是网络问题多交了一次。因为网卡去镜像站交，结果看了下，主站也交上了……</p>
+<p>我第二次就是加了个特判 k &#x3D; 1 , 然后就交了，后面发现自己太唐，难道不是 k 只能取一次方时就 break 。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,k;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    <span class="keyword">if</span>(k==<span class="number">1</span>)&#123;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(k&gt;n)&#123;</span><br><span class="line">            ans+=n;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ll cur=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur*k&gt;n)&#123;</span><br><span class="line">                n-=cur;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cur*=k;</span><br><span class="line">        &#125;</span><br><span class="line">        ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>越想越气，可能就是这题让我开始弘文（ ）。</p>
+<h4 id="Problem-B"><a href="#Problem-B" class="headerlink" title="Problem B"></a>Problem B</h4><p>有 n 盏灯，从 1 到 n ，刚开始全为开启状态 ， 每一盏灯 i 会使它的所有倍数的灯的状态反转 ， 问至少要 n 为多少可以使得亮着的灯的数量为 k 。</p>
+<p>实际上，很容易知道，如果一个数字的因子的数量为偶数那他就是亮着的，否则就是熄灭的。但是我赛时感觉似乎没啥规律，唐爆了。。。这不是很简单嘛。然后打标看了，发现答案依次是 k+1 , k+2 , …… , 数量也有一定规律， 就是两个+1 ，三个 +2 , ……</p>
+<p>但是很容易发现，除了完全平方数，其他数字的因子数量一定为 2 ，因为如果你有因子 i ，那么一定有 n&#x2F;i ，且 i*i&#x3D;n ，所以一定是一一对应的，数量一定为偶数。</p>
+<p>所以每有一个完全平方数，数量就得+1 , 我们假设答案里的完全平方数为 m 个，那么一定有 m*m-m &lt; k ，也就是说k+m个数字，会减掉 m 个，所以答案为 k+m ，二分一下即可。k+m &gt; m*m 。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void solve()</span><br><span class="line">&#123;</span><br><span class="line">    ll k;</span><br><span class="line">    cin&gt;&gt;k;</span><br><span class="line">    //只有完全平方数的因子个数为奇数</span><br><span class="line">    //m*m-m&lt; k 我们知道了m 答案就是</span><br><span class="line">    ll lo=1,hi=2*INF;</span><br><span class="line">    while(lo&lt;hi-1)&#123;</span><br><span class="line">        ll m=lo+hi&gt;&gt;1;</span><br><span class="line">        if(m*m-m&lt;k) lo=m;</span><br><span class="line">        else hi=m;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;k+lo&lt;&lt;&#x27;\n&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Problem-C"><a href="#Problem-C" class="headerlink" title="Problem C"></a>Problem C</h4><p>给出三个数字 b , c , d ，问是否存在 a 使得 (a|d)-(a&amp;c)&#x3D;d</p>
+<p>赛时瞎写过了。看了题解发现自己真唐爆了，就是一个很简单的东西没看出来都。</p>
+<p>可以发现每一位的值永远不可能为负，因为这样的话需要 前面 a&#x3D;0 , 后面 a&#x3D;1 ，显然不可能。</p>
+<p>所以只需要独立考虑每一位 。如果这一位 a&#x3D;1 和 a&#x3D;0 都不能让表达式的这一位成立，那么就一定不行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll a=<span class="number">0</span>,b,c,d;</span><br><span class="line">    cin&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">62</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="type">int</span> x=b&gt;&gt;i&amp;<span class="number">1</span>,y=c&gt;&gt;i&amp;<span class="number">1</span>,z=d&gt;&gt;i&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(x==z) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1</span>-y==z) a|=<span class="number">1LL</span>&lt;&lt;i;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Problem-D"><a href="#Problem-D" class="headerlink" title="Problem D"></a>Problem D</h4><p>有 n 个点，给你 m 次操作，每次操作给出三个数字，idx , d , k ，需要将 idx , idx+d , idx+2d , … ,idx+kd ，两两连起来。问最后有多少个连通分量。</p>
+<p>由于 d 的值很小，所以如果一个数字会被连的话，那么它前10 个位置一定有连它的。。。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span><span class="number">+10</span>;</span><br><span class="line"><span class="type">int</span> f[N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x==f[x]?x:f[x]=<span class="built_in">find</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        f[i]=i;</span><br><span class="line">    <span class="function">vector <span class="title">c</span><span class="params">(n<span class="number">+1</span>,array&lt;<span class="type">int</span>,<span class="number">11</span>&gt;())</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> id,d,k;</span><br><span class="line">        cin&gt;&gt;id&gt;&gt;d&gt;&gt;k;</span><br><span class="line">        <span class="built_in">cmax</span>(c[id][d],k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i-j&lt;<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>(c[i-j][j])&#123;</span><br><span class="line">                f[<span class="built_in">find</span>(i)]=f[<span class="built_in">find</span>(i-j)];</span><br><span class="line">                <span class="built_in">cmax</span>(c[i][j],c[i-j][j]<span class="number">-1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ans+=<span class="built_in">find</span>(i)==i;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>c[ i ][ j ]表示从 i 开始连，步长为 j 的最大的 k , 如果你前面的 j 距离的点，k&gt;0 ，那么你就会被连到一起。</p>
+<p>太妙了啊。。。困困。。。</p>
+<p>没有上蓝，但我还是决定明天回家，票已经买好了，下午四点的，七点到家。今天一天没刷题，白天满课，晚上干啥了来着。。。好像啥也没干，唐爆了，明天白天务必写一些。</p>
+]]></content>
+      <categories>
+        <category>-Codeforces</category>
+      </categories>
+      <tags>
+        <tag>Codeforces</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>弄博客似乎有点难</title>
     <url>/2024/09/28/%E5%BC%84%E5%8D%9A%E5%AE%A2%E7%9C%9F%E9%9A%BE%E5%95%8A/</url>
     <content><![CDATA[<p>整了一天多的时间……但是没啥变化的。</p>
@@ -17,8 +59,25 @@
 ]]></content>
   </entry>
   <entry>
+    <title>本来差39分上蓝，现在应该不止了……</title>
+    <url>/2024/09/30/%E6%9C%AC%E6%9D%A5%E5%B7%AE39%E5%88%86%E4%B8%8A%E8%93%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%BA%94%E8%AF%A5%E4%B8%8D%E6%AD%A2%E4%BA%86%E2%80%A6%E2%80%A6/</url>
+    <content><![CDATA[<p>唉唉，打完了这场Codeforces，本来指望着这场打完了上蓝名的，本来差39分。这下，感觉打完了差得更多了。</p>
+<p><img src="/../../img/2024_0930_01_44_46.png" alt="2024_0930_01_44_46"></p>
+<p>还在pending，希望别FST了，B我打表找规律的，C我也不知道怎么瞎搞就交了下就过了……我本来感觉这个C我怎么都不该对的，不过现在看其实人挺多的。A题wa了三次，最不该的。网络问题多了一次，另外两次完全是我自己的问题。明明这么简单的一个题，唉唉。也看运气吧CF，如果我真的有蓝名水平，那么我只要打得多一定会上的。这会上不了没啥的，掉分就加训呗。</p>
+<p>我的训练量和强度其实还是远远不够，感觉基本没训到什么，就应该疯狂板刷1600-2000，是得稍微高点吧，这场的D是不是分数起码1800来着，我猜的。没事，慢慢来吧。</p>
+<p>虽然没有上蓝名是有点失落，但是我会好好加油的，那国庆就不回去了，看看能刷多少题，虽然感觉刷不了多少，但我尽力吧。其实还是急了点吧hhh，练的量还不算太够，本来期望是11月上蓝，再给一个月差不多了，研究一下，这个D题我确实就是写不出来，没办法，明天再看看吧，明天一天满课的。但是之后就国庆假期了就爽了。</p>
+<p>我要更稳一点，然后这种赛时1000-2000人过的题目，也得想办法取突破吧，对于目前的我确实是有点难，但是起码现在我一定会补了，那我就得更多补一点。想赛时写出1000-2000人过的题，那我是不是就该多补一题呢，嗯嗯嗯。加油吧！！！</p>
+<p>再看看补点什么算法和数据结构，我目前真的感觉我打比赛还真没用到过什么算法，当然我也不会什么算法来着。多补一些难题我应该？啊啊啊啊啊啊，但是这个对我已经够难了。感觉有点不知道写什么题？但是实际上，我有很多时间可以写题吧，怎么不多写一点，肯定有用吧。</p>
+<p>睡了睡了，然后就是，就算我现在打CF用不到什么算法可能，但是我一定得去学吧，不学真就废了，然后多刷题，多刷CF我也一定可以上分只要刷得够多。</p>
+<p>感觉自己写得很混乱。总之我会加油，尽量要保持一直在学东西吧，我把自己学习的记录发到博客上，也好让大家监督我或者看我笑话。</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Codeforces Round 975 (Div. 2)</title>
-    <url>/2024/09/29/Codeforces-Round-975-Div-2/</url>
+    <url>/2024/09/29/CF2019/</url>
     <content><![CDATA[<h3 id="Codeforces-Round-975-Div-2"><a href="#Codeforces-Round-975-Div-2" class="headerlink" title="Codeforces Round 975 (Div. 2)"></a>Codeforces Round 975 (Div. 2)</h3><p>最无语的一集，昨天晚上的Codeforces不是只作出来三题嘛。那个E题一直超时，但是我刚才又看了一下，结果很快就A了，大概就十几分钟。唉唉，昨天要是写出来了，那下场应该就可以比较轻松的上蓝了。不过毕竟情况不一样，心态也不一样了，本来可能打算看题解的。</p>
 <p>自己写了一下过了，不过感觉写法不是很优啊，时限3000ms，我都代码1500ms，写的时候大概估算了下感觉应该不会超时，不过这个时间也挺大了，有点差了这个做法，但是看了下别人的代码，发现其实我大概离正解就差一点点了，还是可以的，有希望的哈。</p>
 <p>这场只上了25分，也还行了，昨天carrot预测的是十几分来着……</p>
@@ -60,25 +119,11 @@
 
 <p>到这里就差不多了，现在快两点了，明天两节机房的课，明天再刷题。</p>
 ]]></content>
+      <categories>
+        <category>-Codeforces</category>
+      </categories>
       <tags>
         <tag>Codeforces</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>本来差39分上蓝，现在应该不止了……</title>
-    <url>/2024/09/30/%E6%9C%AC%E6%9D%A5%E5%B7%AE39%E5%88%86%E4%B8%8A%E8%93%9D%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%BA%94%E8%AF%A5%E4%B8%8D%E6%AD%A2%E4%BA%86%E2%80%A6%E2%80%A6/</url>
-    <content><![CDATA[<p>唉唉，打完了这场Codeforces，本来指望着这场打完了上蓝名的，本来差39分。这下，感觉打完了差得更多了。</p>
-<p><img src="/../../img/2024_0930_01_44_46.png" alt="2024_0930_01_44_46"></p>
-<p>还在pending，希望别FST了，B我打表找规律的，C我也不知道怎么瞎搞就交了下就过了……我本来感觉这个C我怎么都不该对的，不过现在看其实人挺多的。A题wa了三次，最不该的。网络问题多了一次，另外两次完全是我自己的问题。明明这么简单的一个题，唉唉。也看运气吧CF，如果我真的有蓝名水平，那么我只要打得多一定会上的。这会上不了没啥的，掉分就加训呗。</p>
-<p>我的训练量和强度其实还是远远不够，感觉基本没训到什么，就应该疯狂板刷1600-2000，是得稍微高点吧，这场的D是不是分数起码1800来着，我猜的。没事，慢慢来吧。</p>
-<p>虽然没有上蓝名是有点失落，但是我会好好加油的，那国庆就不回去了，看看能刷多少题，虽然感觉刷不了多少，但我尽力吧。其实还是急了点吧hhh，练的量还不算太够，本来期望是11月上蓝，再给一个月差不多了，研究一下，这个D题我确实就是写不出来，没办法，明天再看看吧，明天一天满课的。但是之后就国庆假期了就爽了。</p>
-<p>我要更稳一点，然后这种赛时1000-2000人过的题目，也得想办法取突破吧，对于目前的我确实是有点难，但是起码现在我一定会补了，那我就得更多补一点。想赛时写出1000-2000人过的题，那我是不是就该多补一题呢，嗯嗯嗯。加油吧！！！</p>
-<p>再看看补点什么算法和数据结构，我目前真的感觉我打比赛还真没用到过什么算法，当然我也不会什么算法来着。多补一些难题我应该？啊啊啊啊啊啊，但是这个对我已经够难了。感觉有点不知道写什么题？但是实际上，我有很多时间可以写题吧，怎么不多写一点，肯定有用吧。</p>
-<p>睡了睡了，然后就是，就算我现在打CF用不到什么算法可能，但是我一定得去学吧，不学真就废了，然后多刷题，多刷CF我也一定可以上分只要刷得够多。</p>
-<p>感觉自己写得很混乱。总之我会加油，尽量要保持一直在学东西吧，我把自己学习的记录发到博客上，也好让大家监督我或者看我笑话。</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
       </tags>
   </entry>
 </search>
